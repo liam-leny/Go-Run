@@ -1,0 +1,29 @@
+{
+  "NavBar": {
+    "miles": "Switch to miles",
+    "km": "Switch to kilometers"
+  },
+  "PaceCalculator": {
+    "title": "Pace Calculator",
+    "distance": "Distance",
+    "distance_description": "Enter the distance in ",
+    "km": "kilometers",
+    "miles": "miles",
+    "miles_placeholder": "6.2",
+    "hours": "Hours",
+    "hours_description": "Enter the number of hours elapsed",
+    "minutes": "Minutes",
+    "minutes_description": "Enter the minutes",
+    "seconds": "Seconds",
+    "seconds_description": "Enter the seconds",
+    "calculate": "Calculate",
+    "pace": "Pace: "
+  },
+  "zod": {
+    "number": "This field is mandatory and must be a number",
+    "positive": "This field must be a positive number",
+    "integer": "This field must be an integer",
+    "nonnegative": "This field cannot be negative",
+    "max_59": "This field cannot exceed 59"
+  }
+}
