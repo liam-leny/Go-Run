@@ -19,11 +19,37 @@
     "calculate": "Calculate",
     "pace": "Pace: "
   },
+  "ActivitiesForm": {
+    "date": "Activity date",
+    "pick_a_date": "Pick a date",
+    "distance": "Distance",
+    "km": "kilometers",
+    "miles": "miles",
+    "miles_placeholder": "6.2",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "save": "Save"
+  },
+  "DataTable": {
+    "noData": "No data"
+  },
+  "ActivitiesTable": {
+    "date": "Date",
+    "distance": "Distance",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "delete": "Delete"
+  },
   "zod": {
     "number": "This field is mandatory and must be a number",
     "positive": "This field must be a positive number",
     "integer": "This field must be an integer",
     "nonnegative": "This field cannot be negative",
-    "max_59": "This field cannot exceed 59"
+    "max_59": "This field cannot exceed 59",
+    "date": "This field is mandatory and must be a date",
+    "date_too_old": "La date renseignée est trop ancienne",
+    "date_too_young": "The date cannot be in the future"
   }
 }

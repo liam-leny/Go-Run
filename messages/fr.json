@@ -6,24 +6,50 @@
   "PaceCalculator": {
     "title": "Calculateur d'allure",
     "distance": "Distance",
-    "distance_description": "Indiquez la distance en ",    
+    "distance_description": "Indiquez la distance en ",
     "km": "kilomètres",
     "miles": "miles",
     "miles_placeholder": "6,2",
     "hours": "Heures",
     "hours_description": "Indiquez le nombre d'heures écoulées",
-    "minutes": "Minutes",    
+    "minutes": "Minutes",
     "minutes_description": "Indiquez les minutes",
     "seconds": "Secondes",
     "seconds_description": "Indiquez les secondes",
     "calculate": "Calculer",
     "pace": "Allure : "
   },
+  "ActivitiesForm": {
+    "date": "Date de l'activité",
+    "pick_a_date": "Choisissez une date",
+    "distance": "Distance",
+    "km": "kilomètres",
+    "miles": "miles",
+    "miles_placeholder": "6,2",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes",
+    "save": "Sauvergarder"
+  },
+  "DataTable": {
+    "noData": "Aucune donnée"
+  },
+  "ActivitiesTable": {
+    "date": "Date",
+    "distance": "Distance",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes",
+    "delete": "Supprimer"
+  },
   "zod": {
     "number": "Ce champ est obligatoire et doit être un nombre",
     "positive": "Ce champ doit être un nombre positif",
     "integer": "Ce champ doit être un nombre entier",
     "nonnegative": "Ce champ ne peut pas être négatif",
-    "max_59": "Ce champ ne peut pas dépasser 59"
+    "max_59": "Ce champ ne peut pas dépasser 59",
+    "date": "Ce champ est obligatoire et doit être une date",
+    "date_too_old": "La date est trop ancienne",
+    "date_too_young": "La date ne peut pas être dans le futur"
   }
 }
