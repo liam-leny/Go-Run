@@ -42,6 +42,12 @@
     "seconds": "Seconds",
     "delete": "Delete"
   },
+  "StatsChart": {
+    "title": "Running statistics",
+    "description": "Last 3 months' activities",
+    "distance": "Distance",
+    "time": "Time"
+  },
   "zod": {
     "number": "This field is mandatory and must be a number",
     "positive": "This field must be a positive number",

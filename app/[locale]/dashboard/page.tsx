@@ -10,9 +10,7 @@ export default function Page() {
     <div>
       <UnitProvider>
         <NavBar />
-        <div className="grid grid-flow-col grid-rows-2 gap-4">
-          <ActivitiesForm />
-        </div>
+        <ActivitiesForm />
       </UnitProvider>
     </div>
   );

@@ -42,6 +42,12 @@
     "seconds": "Secondes",
     "delete": "Supprimer"
   },
+  "StatsChart": {
+    "title": "Statistique de course",
+    "description": "Activitités des 3 derniers mois",
+    "distance": "Distance",
+    "time": "Temps"
+  },
   "zod": {
     "number": "Ce champ est obligatoire et doit être un nombre",
     "positive": "Ce champ doit être un nombre positif",

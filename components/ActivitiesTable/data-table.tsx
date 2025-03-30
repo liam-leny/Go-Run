@@ -44,7 +44,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   });
 
   return (
-    <div className="max-w-md mx-auto p-6 rounded-md border">
+    <div className="lg:basis-2/3 rounded-md">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
