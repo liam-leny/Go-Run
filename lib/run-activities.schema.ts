@@ -8,7 +8,11 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 export function getRunActivitiesSchema(t: (key: string) => string) {
   return getPaceCalculatorSchema(t).extend({
     date: z.coerce
-      .date({ message: t("date") })
+      .date({
+        errorMap: (issue, { defaultError }) => ({
+          message: issue.code === "invalid_date" ? t("date") : defaultError,
+        }),
+      })
       .min(new Date("1990-01-01"), { message: t("date_too_old") })
       .max(tomorrow, { message: t("date_too_young") }),
   });

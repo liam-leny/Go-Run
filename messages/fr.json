@@ -31,16 +31,15 @@
     "seconds": "Secondes",
     "save": "Sauvergarder"
   },
-  "DataTable": {
-    "noData": "Aucune donnée"
-  },
   "ActivitiesTable": {
     "date": "Date",
     "distance": "Distance",
-    "hours": "Heures",
-    "minutes": "Minutes",
-    "seconds": "Secondes",
-    "delete": "Supprimer"
+    "time": "Temps",
+    "pace": "Allure",
+    "delete": "Supprimer",
+    "noData": "Aucune donnée",
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "StatsChart": {
     "title": "Statistique de course",
