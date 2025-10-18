@@ -5,7 +5,7 @@ const today = new Date();
 const tomorrow = new Date(today);
 tomorrow.setDate(tomorrow.getDate() + 1);
 
-export function getRunActivitiesSchema(t: (key: string) => string) {
+export function getActivitySchema(t: (key: string) => string) {
   return getPaceCalculatorSchema(t).extend({
     date: z.coerce
       .date({
@@ -18,6 +18,6 @@ export function getRunActivitiesSchema(t: (key: string) => string) {
   });
 }
 
-export type ActivitiesFormValues = z.infer<
-  Awaited<ReturnType<typeof getRunActivitiesSchema>>
+export type ActivityFormValues = z.infer<
+  Awaited<ReturnType<typeof getActivitySchema>>
 >;

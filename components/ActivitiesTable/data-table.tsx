@@ -24,16 +24,21 @@ import {
 import { useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 
-interface DataTableProps<TData> {
+interface ActivitiesTableProps<TData> {
   columns: {
     [K in keyof TData]: ColumnDef<TData, TData[K]>;
   }[keyof TData][];
   data: TData[];
 }
 
-export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function ActivitiesTable<TData>({
+  columns,
+  data,
+}: ActivitiesTableProps<TData>) {
   const t = useTranslations("ActivitiesTable");
-  const [sorting, setSorting] = React.useState<SortingState>([{ id: "date", desc: true }]);
+  const [sorting, setSorting] = React.useState<SortingState>([
+    { id: "date", desc: true },
+  ]);
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 5,

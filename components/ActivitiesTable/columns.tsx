@@ -1,7 +1,9 @@
 "use client";
 
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
-import { ActivitiesFormValues } from "@/lib/run-activities.schema";
+import { ActivityFormValues } from "@/lib/activity.schema";
+import { convertDistance } from "@/lib/distance";
+import { calculatePace } from "@/lib/pace";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { enGB, fr } from "date-fns/locale";
@@ -17,28 +19,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const convertDistance = (distanceInKm: number, unit: string) => {
-  return unit === "miles" ? distanceInKm / 1.609344 : distanceInKm;
-};
-
-const computePace = (
-  distanceinKm: number,
-  unit: string,
-  hours: number,
-  minutes: number,
-  seconds: number
-) => {
-  const distance = convertDistance(distanceinKm, unit);
-  const totalMinutes = hours * 60 + minutes + seconds / 60;
-
-  const pace = totalMinutes / distance;
-
-  const paceMinutes = Math.floor(pace);
-  const paceSeconds = Math.round((pace - paceMinutes) * 60);
-
-  return `${paceMinutes}:${paceSeconds.toString().padStart(2, "0")}`;
-};
-
 const formatDate = (date: Date, localeCode: string) => {
   const locales = { fr, en: enGB };
   const locale = locales[localeCode as keyof typeof locales] || enGB;
@@ -48,7 +28,7 @@ const formatDate = (date: Date, localeCode: string) => {
 
 export function useColumns(
   handleDelete: (id: string) => void
-): ColumnDef<ActivitiesFormValues>[] {
+): ColumnDef<ActivityFormValues>[] {
   const t = useTranslations("ActivitiesTable");
   const { unit } = useUnit();
   const localeCode = useLocale();
@@ -107,7 +87,14 @@ export function useColumns(
       header: `${t("pace")} (min/${unit === "km" ? "km" : "mile"})`,
       cell: ({ row }) => {
         const { distance, hours, minutes, seconds } = row.original;
-        return computePace(distance, unit, hours, minutes, seconds);
+        const distanceInUnit = convertDistance(distance, unit);
+
+        return calculatePace({
+          distance: distanceInUnit,
+          hours,
+          minutes,
+          seconds,
+        });
       },
     },
     {

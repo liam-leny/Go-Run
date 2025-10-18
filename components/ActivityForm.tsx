@@ -13,10 +13,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useLocale, useTranslations } from "next-intl";
-import {
-  getRunActivitiesSchema,
-  ActivitiesFormValues,
-} from "@/lib/run-activities.schema";
+import { getActivitySchema, ActivityFormValues } from "@/lib/activity.schema";
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
@@ -24,27 +21,28 @@ import { CalendarIcon } from "lucide-react";
 import { fr, enGB } from "date-fns/locale";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { DataTable } from "./ActivitiesTable/data-table";
+import { ActivitiesTable } from "./ActivitiesTable/data-table";
 import { useColumns } from "./ActivitiesTable/columns";
 import { useEffect, useState } from "react";
 import StatsChart from "./StatsChart";
+import { convertToKilometers } from "@/lib/distance";
 
 const locales = { fr: fr, en: enGB };
 
-export default function ActivitiesForm() {
-  const t = useTranslations("ActivitiesForm");
+export default function ActivityForm() {
+  const t = useTranslations("ActivityForm");
   const tZod = useTranslations("zod");
   const currentLocale = useLocale();
   const locale = locales[currentLocale as keyof typeof locales] || enGB;
   const dateFormat = currentLocale === "fr" ? "PPPP" : "PPP";
 
   // Stores distances in kilometric units only
-  const [data, setData] = useState<ActivitiesFormValues[]>([]);
+  const [data, setData] = useState<ActivityFormValues[]>([]);
 
   const { unit } = useUnit();
 
-  const form = useForm<ActivitiesFormValues>({
-    resolver: zodResolver(getRunActivitiesSchema(tZod)),
+  const form = useForm<ActivityFormValues>({
+    resolver: zodResolver(getActivitySchema(tZod)),
   });
 
   useEffect(() => {
@@ -54,10 +52,10 @@ export default function ActivitiesForm() {
     }
   }, []);
 
-  function onSubmit(values: ActivitiesFormValues) {
+  function onSubmit(values: ActivityFormValues) {
     const normalizedValues = {
       ...values,
-      distance: unit === "miles" ? values.distance * 1.609344 : values.distance,
+      distance: convertToKilometers(values.distance, unit),
     };
 
     const updatedData = [...data, normalizedValues];
@@ -83,48 +81,48 @@ export default function ActivitiesForm() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="lg:basis-1/3 grid grid-rows-3 grid-cols-3 justify-items-center justify-start gap-4"
           >
-              <FormField
-                control={form.control}
-                name="date"
-                render={({ field }) => (
-                  <FormItem className="col-span-2 grid gap-2 w-full">
-                    <FormLabel className="justify-center">{t("date")}</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant={"outline"}
-                            className={cn(
-                              "w-full pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground"
-                            )}
-                          >
-                            {field.value ? (
-                              format(field.value, dateFormat, { locale })
-                            ) : (
-                              <span>{t("pick_a_date")}</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1990-01-01")
-                          }
-                          initialFocus
-                          locale={locale}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name="date"
+              render={({ field }) => (
+                <FormItem className="col-span-2 grid gap-2 w-full">
+                  <FormLabel className="justify-center">{t("date")}</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, dateFormat, { locale })
+                          ) : (
+                            <span>{t("pick_a_date")}</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) =>
+                          date > new Date() || date < new Date("1990-01-01")
+                        }
+                        initialFocus
+                        locale={locale}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="distance"
@@ -137,7 +135,7 @@ export default function ActivitiesForm() {
                     <Input
                       {...field}
                       type="number"
-                      placeholder={unit === "km" ? "10" : "6.2"}
+                      placeholder={unit === "km" ? "10" : t("miles_placeholder")}
                       min={0}
                       value={field.value ?? ""}
                     />
@@ -214,7 +212,7 @@ export default function ActivitiesForm() {
             </div>
           </form>
         </Form>
-        <DataTable columns={useColumns(handleDelete)} data={data} />
+        <ActivitiesTable columns={useColumns(handleDelete)} data={data} />
       </div>
       <StatsChart data={data} />
     </>

@@ -1,6 +1,6 @@
 "use client";
 
-import ActivitiesForm from "@/components/ActivitiesForm";
+import ActivityForm from "@/components/ActivityForm";
 import React from "react";
 import { UnitProvider } from "../contexts/UnitContext";
 import NavBar from "@/components/NavBar";
@@ -10,7 +10,7 @@ export default function Page() {
     <div>
       <UnitProvider>
         <NavBar />
-        <ActivitiesForm />
+        <ActivityForm />
       </UnitProvider>
     </div>
   );

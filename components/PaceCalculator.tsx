@@ -20,6 +20,7 @@ import {
   getPaceCalculatorSchema,
   PaceCalculatorFormValues,
 } from "@/lib/pace-calculator.schema";
+import { calculatePace } from "@/lib/pace";
 
 export default function PaceCalculator() {
   const t = useTranslations("PaceCalculator");
@@ -34,14 +35,7 @@ export default function PaceCalculator() {
   function onSubmit(values: PaceCalculatorFormValues) {
     const { distance, hours, minutes, seconds } = values;
 
-    const totalMinutes = hours * 60 + minutes + seconds / 60;
-
-    const pace = totalMinutes / distance;
-
-    const paceMinutes = Math.floor(pace);
-    const paceSeconds = Math.round((pace - paceMinutes) * 60);
-
-    setPaceResult(`${paceMinutes}:${paceSeconds.toString().padStart(2, "0")}`);
+    setPaceResult(calculatePace({ distance, hours, minutes, seconds }));
   }
 
   return (

@@ -19,7 +19,7 @@
     "calculate": "Calculer",
     "pace": "Allure : "
   },
-  "ActivitiesForm": {
+  "ActivityForm": {
     "date": "Date de l'activité",
     "pick_a_date": "Choisissez une date",
     "distance": "Distance",

@@ -19,7 +19,7 @@
     "calculate": "Calculate",
     "pace": "Pace: "
   },
-  "ActivitiesForm": {
+  "ActivityForm": {
     "date": "Activity date",
     "pick_a_date": "Pick a date",
     "distance": "Distance",

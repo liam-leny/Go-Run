@@ -1,16 +1,18 @@
-"use client"
+"use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
+export type Unit = "km" | "miles";
+
 interface UnitContextType {
-  unit: "km" | "miles"; 
+  unit: Unit;
   toggleUnit: () => void;
 }
 
 const UnitContext = createContext<UnitContextType | undefined>(undefined);
 
 export function UnitProvider({ children }: { children: ReactNode }) {
-  const [unit, setUnit] = useState<"km" | "miles">("km");
+  const [unit, setUnit] = useState<Unit>("km");
 
   const toggleUnit = () => {
     setUnit((prevUnit) => (prevUnit === "km" ? "miles" : "km"));
