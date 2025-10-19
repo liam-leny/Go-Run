@@ -3,15 +3,14 @@
 import ActivityForm from "@/components/ActivityForm";
 import React from "react";
 import { UnitProvider } from "../contexts/UnitContext";
-import NavBar from "@/components/NavBar";
+import Sidebar from "@/components/Sidebar";
 
 export default function Page() {
   return (
-    <div>
-      <UnitProvider>
-        <NavBar />
+    <UnitProvider>
+      <Sidebar>
         <ActivityForm />
-      </UnitProvider>
-    </div>
+      </Sidebar>
+    </UnitProvider>
   );
 }

@@ -1,7 +1,9 @@
 {
-  "NavBar": {
+  "Sidebar": {
     "miles": "Switch to miles",
-    "km": "Switch to kilometers"
+    "km": "Switch to kilometers",
+    "paceCalculator": "Pace Calculator",
+    "dashboard": "Dashboard"
   },
   "PaceCalculator": {
     "title": "Pace Calculator",

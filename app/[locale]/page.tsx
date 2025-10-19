@@ -1,14 +1,13 @@
-import NavBar from "@/components/NavBar";
+import Sidebar from "@/components/Sidebar";
 import PaceCalculator from "@/components/PaceCalculator";
 import { UnitProvider } from "@/app/[locale]/contexts/UnitContext";
 
 export default function Home() {
   return (
-    <div>
-      <UnitProvider>
-        <NavBar />
+    <UnitProvider>
+      <Sidebar>
         <PaceCalculator />
-      </UnitProvider>
-    </div>
+      </Sidebar>
+    </UnitProvider>
   );
 }

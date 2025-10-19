@@ -1,7 +1,9 @@
 {
-  "NavBar": {
+  "Sidebar": {
     "miles": "Passer en miles",
-    "km": "Passer en kilomètres"
+    "km": "Passer en kilomètres",
+    "paceCalculator": "Calculateur d'allure",
+    "dashboard": "Tableau de bord"
   },
   "PaceCalculator": {
     "title": "Calculateur d'allure",

@@ -114,7 +114,7 @@ export default function ActivityForm() {
                         disabled={(date) =>
                           date > new Date() || date < new Date("1990-01-01")
                         }
-                        initialFocus
+                        autoFocus
                         locale={locale}
                       />
                     </PopoverContent>
