@@ -31,7 +31,7 @@ export default function StatsChart({ data }: StatsChartProps) {
 
   const chartConfig = {
     distance: {
-      label: `${t("distance")} (${unit === "miles" ? "miles" : "km"})`,
+      label: `${t("distance")} (${unit})`,
       color: "hsl(var(--chart-1))",
     },
     time: {
@@ -103,7 +103,7 @@ export default function StatsChart({ data }: StatsChartProps) {
                 className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
                 onClick={() => setActiveChart(chart)}
               >
-                <span className="text-xs text-muted-foreground whitespace-nowrap">
+                <span className="text-xs text-muted-foreground">
                   {chartConfig[chart].label}
                 </span>
                 <span className="text-lg font-bold leading-none sm:text-3xl">

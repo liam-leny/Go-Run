@@ -62,7 +62,7 @@ export default function PaceCalculator() {
                 </FormControl>
                 <FormDescription>
                   {t("distance_description")}
-                  {unit === "km" ? t("km") : t("miles")}
+                  {unit === "km" ? t("kilometers") : t("miles")}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -143,7 +143,7 @@ export default function PaceCalculator() {
           <p className="font-semibold">
             {t("pace")}
             {paceResult}
-            {unit === "km" ? "/km" : "/mile"}
+            {`/${unit}`}
           </p>
         </div>
       )}

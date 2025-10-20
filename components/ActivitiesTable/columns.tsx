@@ -84,7 +84,7 @@ export function useColumns(
     },
     {
       accessorKey: "pace",
-      header: `${t("pace")} (min/${unit === "km" ? "km" : "mile"})`,
+      header: `${t("pace")} (min/${unit})`,
       cell: ({ row }) => {
         const { distance, hours, minutes, seconds } = row.original;
         const distanceInUnit = convertDistance(distance, unit);

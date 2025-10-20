@@ -71,7 +71,7 @@ export default function Sidebar({ children }: SidebarProps) {
     [t]
   );
 
-  const toggleLabel = unit === "km" ? t("miles") : t("km");
+  const toggleLabel = unit === "km" ? t("toggle_miles") : t("toggle_kilometers");
 
   return (
     <SidebarProvider>

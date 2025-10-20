@@ -1,7 +1,7 @@
 {
   "Sidebar": {
-    "miles": "Switch to miles",
-    "km": "Switch to kilometers",
+    "toggle_miles": "Switch to miles",
+    "toggle_kilometers": "Switch to kilometers",
     "paceCalculator": "Pace Calculator",
     "dashboard": "Dashboard"
   },
@@ -9,7 +9,7 @@
     "title": "Pace Calculator",
     "distance": "Distance",
     "distance_description": "Enter the distance in ",
-    "km": "kilometers",
+    "kilometers": "kilometers",
     "miles": "miles",
     "miles_placeholder": "6.2",
     "hours": "Hours",
@@ -25,8 +25,6 @@
     "date": "Activity date",
     "pick_a_date": "Pick a date",
     "distance": "Distance",
-    "km": "kilometers",
-    "miles": "miles",
     "miles_placeholder": "6.2",
     "hours": "Hours",
     "minutes": "Minutes",
