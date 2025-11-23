@@ -100,8 +100,9 @@ export default function PaceCalculator() {
                   <Input
                     {...field}
                     type="number"
-                    placeholder="58"
+                    placeholder="0"
                     min={0}
+                    max={59}
                     value={field.value ?? ""}
                   />
                 </FormControl>
@@ -121,8 +122,9 @@ export default function PaceCalculator() {
                   <Input
                     {...field}
                     type="number"
-                    placeholder="23"
+                    placeholder="0"
                     min={0}
+                    max={59}
                     value={field.value ?? ""}
                   />
                 </FormControl>

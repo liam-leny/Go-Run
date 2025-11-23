@@ -78,7 +78,7 @@ export function useColumns(
         return [
           hours > 0 ? `${hours}h ` : "",
           minutes > 0 ? `${minutes}m ` : "",
-          seconds > 0 ? `${seconds} s ` : "",
+          seconds > 0 ? `${seconds}s ` : "",
         ];
       },
     },
