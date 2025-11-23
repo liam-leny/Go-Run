@@ -3,7 +3,8 @@
     "toggle_miles": "Switch to miles",
     "toggle_kilometers": "Switch to kilometers",
     "paceCalculator": "Pace Calculator",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "trainingProgram": "Training Program"
   },
   "PaceCalculator": {
     "title": "Pace Calculator",
@@ -47,6 +48,89 @@
     "distance": "Distance",
     "time": "Time"
   },
+  "TrainingProgram": {
+    "title": "Training Program",
+    "description": "Set your goal distance and target finish time to generate a personalized weekly plan.",
+    "goalLabel": "Goal distance",
+    "goalPlaceholder": "Select a goal",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "timeHelper": "Set the finish time you want for your {distance} {unit}.",
+    "frequencyLabel": "Weekly sessions",
+    "frequencyHelper": "Pick how many runs you want each week.",
+    "frequencyOptions": {
+      "4": "4 runs per week",
+      "5": "5 runs per week",
+      "6": "6 runs per week"
+    },
+    "generate": "Generate plan",
+    "reset": "Reset",
+    "summaryTitle": "Your {weeks}-week plan",
+    "raceReminder": "Goal distance: {distance} {unit}",
+    "finishReminder": "Target finish time: {time}",
+    "planIntro": "The plan balances easy mileage, quality sessions and long runs calibrated to your target finish time.",
+    "noPlan": "Select a goal distance and finish time to view your plan.",
+    "weekLabel": "Week {week}",
+    "focusLabel": "Focus",
+    "easyRuns": "{count} easy runs of {distance} {unit} at {pace}",
+    "steadyRun": "Steady run of {distance} {unit} at {pace}",
+    "longRun": "Long run of {distance} {unit} at {pace}",
+    "qualityFocusLabel": "Quality focus",
+    "qualitySession": "Use {suggestedRun} for: {session}",
+    "qualityTag": "Quality focus",
+    "qualityPlacement": {
+      "easy": "one easy run",
+      "steady": "the steady run",
+      "long": "the long run"
+    },
+    "summary": {
+      "heading": "Suggested training paces",
+      "race": "Race pace",
+      "easy": "Easy runs",
+      "steady": "Steady runs",
+      "long": "Long runs",
+      "sessions": "Weekly sessions"
+    },
+    "goals": {
+      "5k": "5 km",
+      "10k": "10 km",
+      "half": "Half marathon",
+      "marathon": "Marathon"
+    },
+    "focus": {
+      "base": "Build your aerobic foundation and consistency.",
+      "build": "Add controlled intensity and extend endurance.",
+      "peak": "Sharpen race-specific fitness.",
+      "taper": "Reduce volume, stay sharp and arrive fresh."
+    },
+    "quality": {
+      "5k": {
+        "base": "Strides: 6 x 20 s relaxed accelerations after an easy run.",
+        "build": "Intervals: 6 x 400 m at interval pace with 200 m jog recoveries.",
+        "peak": "Race pace repeats: 3 x 1.5 km at goal pace with 3 min jog recoveries.",
+        "taper": "Sharpening: 4 x 200 m at race pace with full recovery."
+      },
+      "10k": {
+        "base": "Tempo sampler: 3 x 6 min at steady pace with 2 min easy jog.",
+        "build": "Intervals: 5 x 1 km at interval pace with 3 min jog recoveries.",
+        "peak": "Race pace repeats: 3 x 2 km at goal pace with 2 min jog recoveries.",
+        "taper": "Sharpening: 5 x 400 m alternating race and slightly faster pace."
+      },
+      "half": {
+        "base": "Progression run: Finish the final third near steady pace.",
+        "build": "Tempo run: 2 x 15 min at steady pace with 5 min easy jog.",
+        "peak": "Race pace blocks: 3 x 4 km at goal pace with 5 min easy jog.",
+        "taper": "Sharpening: 4 x 1 km at race pace with 3 min jog recoveries."
+      },
+      "marathon": {
+        "base": "Aerobic builder: 10 km at easy pace with last 2 km steady.",
+        "build": "Marathon pace intervals: 3 x 5 km at goal pace with 2 km easy jog.",
+        "peak": "Long progression: 24 km with final 8 km at goal pace.",
+        "taper": "Sharpening: 3 x 5 km at marathon pace separated by 2 km easy."
+      }
+    }
+  },
   "zod": {
     "number": "This field is mandatory and must be a number",
     "positive": "This field must be a positive number",
@@ -55,6 +139,7 @@
     "max_59": "This field cannot exceed 59",
     "date": "This field is mandatory and must be a date",
     "date_too_old": "La date renseignée est trop ancienne",
-    "date_too_young": "The date cannot be in the future"
+    "date_too_young": "The date cannot be in the future",
+    "frequency_range": "Choose between 4 and 6 runs per week."
   }
 }

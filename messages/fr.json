@@ -1,9 +1,10 @@
 {
   "Sidebar": {
-    "miles": "Passer en miles",
-    "kilometers": "Passer en kilomètres",
+    "toggle_miles": "Passer en miles",
+    "toggle_kilometers": "Passer en kilomètres",
     "paceCalculator": "Calculateur d'allure",
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "trainingProgram": "Programme d'entraînement"
   },
   "PaceCalculator": {
     "title": "Calculateur d'allure",
@@ -47,6 +48,89 @@
     "distance": "Distance",
     "time": "Temps"
   },
+  "TrainingProgram": {
+    "title": "Programme d'entraînement",
+    "description": "Définissez votre objectif de distance et de temps pour générer un plan hebdomadaire personnalisé.",
+    "goalLabel": "Objectif de distance",
+    "goalPlaceholder": "Choisissez un objectif",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes",
+    "timeHelper": "Indiquez le temps visé pour parcourir {distance} {unit}.",
+    "frequencyLabel": "Séances hebdomadaires",
+    "frequencyHelper": "Choisissez le nombre de sorties souhaité par semaine.",
+    "frequencyOptions": {
+      "4": "4 sorties par semaine",
+      "5": "5 sorties par semaine",
+      "6": "6 sorties par semaine"
+    },
+    "generate": "Générer le plan",
+    "reset": "Réinitialiser",
+    "summaryTitle": "Votre plan sur {weeks} semaines",
+    "raceReminder": "Distance cible : {distance} {unit}",
+    "finishReminder": "Temps cible : {time}",
+    "planIntro": "Le plan équilibre sorties faciles, séances qualitatives et longues sorties pour atteindre votre temps cible.",
+    "noPlan": "Sélectionnez un objectif de distance et un temps pour afficher votre plan.",
+    "weekLabel": "Semaine {week}",
+    "focusLabel": "Objectif",
+    "easyRuns": "{count} sorties faciles de {distance} {unit} à {pace}",
+    "steadyRun": "Sortie tempo de {distance} {unit} à {pace}",
+    "longRun": "Sortie longue de {distance} {unit} à {pace}",
+    "qualityFocusLabel": "Focus qualitatif",
+    "qualitySession": "Consacrez {suggestedRun} à : {session}",
+    "qualityTag": "Focus qualitatif",
+    "qualityPlacement": {
+      "easy": "une sortie facile",
+      "steady": "la sortie tempo",
+      "long": "la sortie longue"
+    },
+    "summary": {
+      "heading": "Allures suggérées",
+      "race": "Allure course",
+      "easy": "Sorties faciles",
+      "steady": "Sorties tempo",
+      "long": "Sorties longues",
+      "sessions": "Séances hebdomadaires"
+    },
+    "goals": {
+      "5k": "5 km",
+      "10k": "10 km",
+      "half": "Semi-marathon",
+      "marathon": "Marathon"
+    },
+    "focus": {
+      "base": "Construire l'endurance de base et la régularité.",
+      "build": "Ajouter de l'intensité maîtrisée et prolonger l'endurance.",
+      "peak": "Affiner la forme spécifique à la course.",
+      "taper": "Réduire le volume, rester alerte et arriver frais."
+    },
+    "quality": {
+      "5k": {
+        "base": "Strides : 6 x 20 s d'accélérations détendues après une sortie facile.",
+        "build": "Intervalles : 6 x 400 m à allure rapide avec 200 m de footing.",
+        "peak": "Répétitions allure course : 3 x 1,5 km à l'allure cible avec 3 min de footing.",
+        "taper": "Affûtage : 4 x 200 m à l'allure course avec récupération complète."
+      },
+      "10k": {
+        "base": "Tempo progressif : 3 x 6 min à allure tempo avec 2 min de footing.",
+        "build": "Intervalles : 5 x 1 km à allure rapide avec 3 min de footing.",
+        "peak": "Répétitions allure course : 3 x 2 km à l'allure cible avec 2 min de footing.",
+        "taper": "Affûtage : 5 x 400 m en alternant allure course et légèrement plus vite."
+      },
+      "half": {
+        "base": "Sortie progressive : terminer le dernier tiers proche de l'allure tempo.",
+        "build": "Tempo fractionné : 2 x 15 min à allure tempo avec 5 min de footing.",
+        "peak": "Blocs allure course : 3 x 4 km à l'allure cible avec 5 min de footing.",
+        "taper": "Affûtage : 4 x 1 km à l'allure course avec 3 min de footing."
+      },
+      "marathon": {
+        "base": "Renforcement aérobie : 10 km en allure facile avec les 2 derniers km tempo.",
+        "build": "Intervalles allure marathon : 3 x 5 km à l'allure cible avec 2 km de footing.",
+        "peak": "Longue progression : 24 km avec les 8 derniers km à l'allure cible.",
+        "taper": "Affûtage : 3 x 5 km à l'allure marathon séparés par 2 km faciles."
+      }
+    }
+  },
   "zod": {
     "number": "Ce champ est obligatoire et doit être un nombre",
     "positive": "Ce champ doit être un nombre positif",
@@ -55,6 +139,7 @@
     "max_59": "Ce champ ne peut pas dépasser 59",
     "date": "Ce champ est obligatoire et doit être une date",
     "date_too_old": "La date est trop ancienne",
-    "date_too_young": "La date ne peut pas être dans le futur"
+    "date_too_young": "La date ne peut pas être dans le futur",
+    "frequency_range": "Choisissez entre 4 et 6 sorties par semaine."
   }
 }
