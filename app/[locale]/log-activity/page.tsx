@@ -1,15 +1,14 @@
 "use client";
 
-import { Dashboard } from "@/components/Dashboard";
-import React from "react";
-import { UnitProvider } from "../contexts/UnitContext";
 import Sidebar from "@/components/Sidebar";
+import ActivityForm from "@/components/ActivityForm";
+import { UnitProvider } from "../contexts/UnitContext";
 
 export default function Page() {
   return (
     <UnitProvider>
       <Sidebar>
-        <Dashboard />
+        <ActivityForm />
       </Sidebar>
     </UnitProvider>
   );

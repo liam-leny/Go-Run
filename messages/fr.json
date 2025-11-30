@@ -3,6 +3,7 @@
     "toggle_miles": "Passer en miles",
     "toggle_kilometers": "Passer en kilomètres",
     "paceCalculator": "Calculateur d'allure",
+    "activityEntry": "Saisir une activité",
     "dashboard": "Tableau de bord",
     "trainingProgram": "Programme d'entraînement"
   },
@@ -23,6 +24,8 @@
     "pace": "Allure : "
   },
   "ActivityForm": {
+    "title": "Enregistrer une activité",
+    "description": "Sauvegardez chaque sortie avec sa date, sa distance et sa durée.",
     "date": "Date de l'activité",
     "pick_a_date": "Choisissez une date",
     "distance": "Distance",

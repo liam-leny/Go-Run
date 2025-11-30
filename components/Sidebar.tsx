@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import type { LucideIcon } from "lucide-react";
-import { Dumbbell, Gauge, LayoutDashboard } from "lucide-react";
+import { Dumbbell, Gauge, LayoutDashboard, ListPlus } from "lucide-react";
 
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
@@ -31,12 +31,13 @@ type SidebarProps = {
 
 type NavigationItem = {
   href: string;
-  labelKey: "paceCalculator" | "dashboard" | "trainingProgram";
+  labelKey: "paceCalculator" | "activityEntry" | "dashboard" | "trainingProgram";
   icon: LucideIcon;
 };
 
 const NAVIGATION_ITEMS: NavigationItem[] = [
   { href: "/", labelKey: "paceCalculator", icon: Gauge },
+  { href: "/log-activity", labelKey: "activityEntry", icon: ListPlus },
   { href: "/dashboard", labelKey: "dashboard", icon: LayoutDashboard },
   { href: "/training-program", labelKey: "trainingProgram", icon: Dumbbell },
 ];

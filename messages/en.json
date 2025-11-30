@@ -3,6 +3,7 @@
     "toggle_miles": "Switch to miles",
     "toggle_kilometers": "Switch to kilometers",
     "paceCalculator": "Pace Calculator",
+    "activityEntry": "Log Activity",
     "dashboard": "Dashboard",
     "trainingProgram": "Training Program"
   },
@@ -23,6 +24,8 @@
     "pace": "Pace: "
   },
   "ActivityForm": {
+    "title": "Log an activity",
+    "description": "Save each run with its date, distance and duration.",
     "date": "Activity date",
     "pick_a_date": "Pick a date",
     "distance": "Distance",
