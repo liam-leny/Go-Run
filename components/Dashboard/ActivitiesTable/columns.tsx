@@ -8,7 +8,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { enGB, fr } from "date-fns/locale";
 import { useTranslations, useLocale } from "next-intl";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
+
+type DataTableColumn<TData> = ColumnDef<TData, unknown> & {
+  meta?: { className?: string };
+};
 import { ArrowUpDown, MoreHorizontal, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
@@ -17,7 +21,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "../../ui/dropdown-menu";
 
 const formatDate = (date: Date, localeCode: string) => {
   const locales = { fr, en: enGB };
@@ -28,7 +32,7 @@ const formatDate = (date: Date, localeCode: string) => {
 
 export function useColumns(
   handleDelete: (id: string) => void
-): ColumnDef<ActivityFormValues>[] {
+): DataTableColumn<ActivityFormValues>[] {
   const t = useTranslations("ActivitiesTable");
   const { unit } = useUnit();
   const localeCode = useLocale();
@@ -36,6 +40,7 @@ export function useColumns(
   return [
     {
       accessorKey: "date",
+      meta: { className: "w-32" },
       header: ({ column }) => {
         return (
           <Button
@@ -54,6 +59,7 @@ export function useColumns(
     },
     {
       accessorKey: "distance",
+      meta: { className: "w-42" },
       header: ({ column }) => {
         return (
           <Button
@@ -72,18 +78,20 @@ export function useColumns(
     },
     {
       accessorKey: "time",
+      meta: { className: "w-32 whitespace-nowrap" },
       header: t("time"),
       cell: ({ row }) => {
         const { hours, minutes, seconds } = row.original;
-        return [
-          hours > 0 ? `${hours}h ` : "",
-          minutes > 0 ? `${minutes}m ` : "",
-          seconds > 0 ? `${seconds}s ` : "",
-        ];
+        const segments = [];
+        if (hours > 0) segments.push(`${hours}h`);
+        if (minutes > 0) segments.push(`${minutes}m`);
+        if (seconds > 0) segments.push(`${seconds}s`);
+        return segments.length ? segments.join(" ") : "0s";
       },
     },
     {
       accessorKey: "pace",
+      meta: { className: "w-32 whitespace-nowrap" },
       header: `${t("pace")} (min/${unit})`,
       cell: ({ row }) => {
         const { distance, hours, minutes, seconds } = row.original;
@@ -99,6 +107,7 @@ export function useColumns(
     },
     {
       id: "actions",
+      meta: { className: "w-16 text-right" },
       cell: ({ row }) => {
         const activityId = row.index.toString();
         return (

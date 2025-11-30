@@ -35,6 +35,12 @@
     "seconds": "Seconds",
     "save": "Save"
   },
+  "DashboardSummary": {
+    "totalDistance": "Total distance ({unit})",
+    "totalTime": "Total time",
+    "averagePace": "Avg pace (min/{unit})",
+    "activities": "Activities"
+  },
   "ActivitiesTable": {
     "date": "Date",
     "distance": "Distance",

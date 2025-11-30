@@ -22,12 +22,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useTranslations } from "next-intl";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
+
+type DataTableColumn<TData> = ColumnDef<TData, unknown>;
 
 interface ActivitiesTableProps<TData> {
-  columns: {
-    [K in keyof TData]: ColumnDef<TData, TData[K]>;
-  }[keyof TData][];
+  columns: DataTableColumn<TData>[];
   data: TData[];
 }
 
@@ -60,14 +60,17 @@ export function ActivitiesTable<TData>({
 
   return (
     <div className="lg:basis-2/3 rounded-md">
-      <div className="h-[33dvh]">
-        <Table>
+      <div className="min-h-[300px]">
+        <Table className="table-fixed w-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
+                  const className = getMetaClassName(
+                    header.column.columnDef.meta
+                  );
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className={className}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -87,14 +90,19 @@ export function ActivitiesTable<TData>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
+                  {row.getVisibleCells().map((cell) => {
+                    const className = getMetaClassName(
+                      cell.column.columnDef.meta
+                    );
+                    return (
+                      <TableCell key={cell.id} className={className}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    );
+                  })}
                 </TableRow>
               ))
             ) : (
@@ -130,4 +138,16 @@ export function ActivitiesTable<TData>({
       </div>
     </div>
   );
+}
+
+function getMetaClassName(
+  meta: DataTableColumn<unknown>["meta"]
+): string | undefined {
+  if (meta && typeof meta === "object" && "className" in meta) {
+    const maybeClassName = (meta as { className?: string }).className;
+    if (typeof maybeClassName === "string") {
+      return maybeClassName;
+    }
+  }
+  return undefined;
 }
