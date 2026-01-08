@@ -1,10 +1,15 @@
 "use client";
 
 import { ActivityFormValues } from "@/lib/activity.schema";
-import { convertDistance } from "@/lib/distance";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
+import {
+  formatDistance,
+  formatDuration,
+  formatPaceFromSecondsAndDistance,
+} from "@/lib/formatters";
+import { convertDistance } from "@/lib/distance";
 
 type DashboardSummaryProps = {
   data: ActivityFormValues[];
@@ -12,13 +17,15 @@ type DashboardSummaryProps = {
 
 export function DashboardSummary({ data }: DashboardSummaryProps) {
   const { unit } = useUnit();
+  const locale = useLocale();
   const t = useTranslations("DashboardSummary");
 
   const activityCount = data.length;
-  const totalDistance = data.reduce(
-    (acc, activity) => acc + convertDistance(activity.distance, unit),
+  const totalDistanceKm = data.reduce(
+    (acc, activity) => acc + activity.distance,
     0
   );
+  const totalDistance = convertDistance(totalDistanceKm, unit);
   const totalSeconds = data.reduce(
     (acc, { hours, minutes, seconds }) =>
       acc + hours * 3600 + minutes * 60 + seconds,
@@ -27,13 +34,15 @@ export function DashboardSummary({ data }: DashboardSummaryProps) {
   const totalTimeDisplay =
     totalSeconds > 0 ? formatDuration(totalSeconds) : "--";
   const averagePace =
-    totalDistance > 0 ? formatPace(totalSeconds, totalDistance) : "--";
+    totalDistance > 0
+      ? formatPaceFromSecondsAndDistance(totalSeconds, totalDistance)
+      : "--";
 
   return (
     <div className="grid gap-4 md:grid-cols-4">
       <SummaryCard
         title={t("totalDistance", { unit })}
-        value={`${totalDistance.toFixed(1)} ${unit}`}
+        value={formatDistance(totalDistance, unit, locale)}
       />
       <SummaryCard title={t("totalTime")} value={totalTimeDisplay} />
       <SummaryCard title={t("averagePace", { unit })} value={averagePace} />
@@ -54,21 +63,3 @@ function SummaryCard({ title, value }: { title: string; value: string }) {
     </Card>
   );
 }
-
-const formatDuration = (totalSeconds: number) => {
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  return `${hours}h ${minutes.toString().padStart(2, "0")}m`;
-};
-
-const formatPace = (totalSeconds: number, distance: number) => {
-  const secondsPerUnit = totalSeconds / distance;
-  const paceMinutes = Math.floor(secondsPerUnit / 60);
-  const paceSeconds = Math.round(secondsPerUnit % 60);
-  const normalizedSeconds = paceSeconds === 60 ? 0 : paceSeconds;
-  const normalizedMinutes = paceSeconds === 60 ? paceMinutes + 1 : paceMinutes;
-
-  return `${normalizedMinutes}:${normalizedSeconds
-    .toString()
-    .padStart(2, "0")}`;
-};

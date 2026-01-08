@@ -9,6 +9,12 @@ import {
 } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import type { TrainingPlan } from "@/lib/training-plan";
+import {
+  formatDistanceValueFromKm,
+  formatDuration,
+  formatPaceFromPerKm,
+} from "@/lib/formatters";
+import type { Unit } from "@/app/[locale]/contexts/UnitContext";
 
 type SummaryItem = {
   key: string;
@@ -18,30 +24,30 @@ type SummaryItem = {
 
 type TrainingPlanSummaryProps = {
   plan: TrainingPlan;
-  unitLabel: string;
+  unitLabel: Unit;
+  locale: string;
   targetTimeSeconds: number | null;
-  formatDistance: (distanceKm: number) => string;
-  formatPace: (pacePerKm: number) => string;
-  formatDuration: (totalSeconds: number) => string;
 };
 
 export function TrainingPlanSummary({
   plan,
   unitLabel,
+  locale,
   targetTimeSeconds,
-  formatDistance,
-  formatPace,
-  formatDuration,
 }: TrainingPlanSummaryProps) {
   const t = useTranslations("TrainingProgram");
+  const distanceLabel = (km: number) =>
+    formatDistanceValueFromKm(km, unitLabel, locale);
+  const paceLabel = (pacePerKm: number) =>
+    formatPaceFromPerKm(pacePerKm, unitLabel);
 
   const firstWeek = plan.weeks[0];
   const summaryItems: SummaryItem[] = [
-    { key: "race", label: t("summary.race"), value: formatPace(plan.pacePerKm) },
+    { key: "race", label: t("summary.race"), value: paceLabel(plan.pacePerKm) },
     {
       key: "easy",
       label: t("summary.easy"),
-      value: formatPace(firstWeek.easyRuns.pacePerKm),
+      value: paceLabel(firstWeek.easyRuns.pacePerKm),
     },
   ];
 
@@ -49,7 +55,7 @@ export function TrainingPlanSummary({
     summaryItems.push({
       key: "steady",
       label: t("summary.steady"),
-      value: formatPace(firstWeek.steadyRun.pacePerKm),
+      value: paceLabel(firstWeek.steadyRun.pacePerKm),
     });
   }
 
@@ -57,7 +63,7 @@ export function TrainingPlanSummary({
     {
       key: "long",
       label: t("summary.long"),
-      value: formatPace(firstWeek.longRun.pacePerKm),
+      value: paceLabel(firstWeek.longRun.pacePerKm),
     },
     {
       key: "sessions",
@@ -73,7 +79,7 @@ export function TrainingPlanSummary({
         <CardDescription>{t("planIntro")}</CardDescription>
         <CardDescription>
           {t("raceReminder", {
-            distance: formatDistance(plan.raceDistanceKm),
+            distance: distanceLabel(plan.raceDistanceKm),
             unit: unitLabel,
           })}
         </CardDescription>

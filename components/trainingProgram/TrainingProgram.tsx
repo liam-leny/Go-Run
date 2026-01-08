@@ -12,11 +12,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   TrainingGoal,
   TrainingPlan,
-  convertPacePerKmToUnit,
   getRaceDistanceKm,
   generateTrainingPlan,
 } from "@/lib/training-plan";
-import { convertDistance } from "@/lib/distance";
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
 import {
   getTrainingProgramSchema,
@@ -47,39 +45,6 @@ export function TrainingProgram() {
 
   const goal = (form.watch("goal") ?? "5k") as TrainingGoal;
   const goalDistanceKm = getRaceDistanceKm(goal);
-
-  const formatDistance = (distanceKm: number) => {
-    const converted = convertDistance(distanceKm, unit);
-    const rounded = Math.round(converted * 10) / 10;
-    const isInteger = Math.abs(rounded - Math.round(rounded)) < Number.EPSILON;
-    return new Intl.NumberFormat(locale, {
-      minimumFractionDigits: isInteger ? 0 : 1,
-      maximumFractionDigits: isInteger ? 0 : 1,
-    }).format(rounded);
-  };
-
-  const formatPace = (pacePerKm: number) => {
-    const pace = convertPacePerKmToUnit(pacePerKm, unit);
-    const totalSeconds = Math.max(0, Math.round(pace * 60));
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
-
-  const formatDuration = (totalSeconds: number) => {
-    const seconds = Math.max(0, Math.round(totalSeconds));
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = seconds % 60;
-
-    if (hours > 0) {
-      return `${hours}:${minutes.toString().padStart(2, "0")}:${remainingSeconds
-        .toString()
-        .padStart(2, "0")}`;
-    }
-
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-  };
 
   const handleSubmit = (values: TrainingProgramFormValues) => {
     const totalSeconds = Math.round(
@@ -117,7 +82,6 @@ export function TrainingProgram() {
         showReset={Boolean(plan)}
         goalDistanceKm={goalDistanceKm}
         unitLabel={unit}
-        formatDistance={formatDistance}
       />
 
       {plan ? (
@@ -125,16 +89,13 @@ export function TrainingProgram() {
           <TrainingPlanSummary
             plan={plan}
             unitLabel={unit}
+            locale={locale}
             targetTimeSeconds={targetTimeSeconds}
-            formatDistance={formatDistance}
-            formatPace={formatPace}
-            formatDuration={formatDuration}
           />
           <TrainingPlanWeekGrid
             plan={plan}
             unitLabel={unit}
-            formatDistance={formatDistance}
-            formatPace={formatPace}
+            locale={locale}
           />
         </>
       ) : (

@@ -9,19 +9,22 @@ import {
 } from "@/components/ui/card";
 import type { TrainingPlan } from "@/lib/training-plan";
 import { useTranslations } from "next-intl";
+import {
+  formatDistanceValueFromKm,
+  formatPaceFromPerKm,
+} from "@/lib/formatters";
+import type { Unit } from "@/app/[locale]/contexts/UnitContext";
 
 type TrainingPlanWeekGridProps = {
   plan: TrainingPlan;
-  unitLabel: string;
-  formatDistance: (distanceKm: number) => string;
-  formatPace: (pacePerKm: number) => string;
+  unitLabel: Unit;
+  locale: string;
 };
 
 export function TrainingPlanWeekGrid({
   plan,
   unitLabel,
-  formatDistance,
-  formatPace,
+  locale,
 }: TrainingPlanWeekGridProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
@@ -31,8 +34,7 @@ export function TrainingPlanWeekGrid({
           week={week}
           goal={plan.goal}
           unitLabel={unitLabel}
-          formatDistance={formatDistance}
-          formatPace={formatPace}
+          locale={locale}
         />
       ))}
     </div>
@@ -42,29 +44,31 @@ export function TrainingPlanWeekGrid({
 type WeekCardProps = {
   week: TrainingPlan["weeks"][number];
   goal: TrainingPlan["goal"];
-  unitLabel: string;
-  formatDistance: (distanceKm: number) => string;
-  formatPace: (pacePerKm: number) => string;
+  unitLabel: Unit;
+  locale: string;
 };
 
 function WeekCard({
   week,
   goal,
   unitLabel,
-  formatDistance,
-  formatPace,
+  locale,
 }: WeekCardProps) {
   const t = useTranslations("TrainingProgram");
+  const distanceLabel = (km: number) =>
+    formatDistanceValueFromKm(km, unitLabel, locale);
+  const paceLabel = (pacePerKm: number) =>
+    formatPaceFromPerKm(pacePerKm, unitLabel);
 
-  const easyDistance = formatDistance(week.easyRuns.distanceKm);
-  const longDistance = formatDistance(week.longRun.distanceKm);
+  const easyDistance = distanceLabel(week.easyRuns.distanceKm);
+  const longDistance = distanceLabel(week.longRun.distanceKm);
   const steadyDistance = week.steadyRun
-    ? formatDistance(week.steadyRun.distanceKm)
+    ? distanceLabel(week.steadyRun.distanceKm)
     : null;
-  const easyPace = formatPace(week.easyRuns.pacePerKm);
-  const longPace = formatPace(week.longRun.pacePerKm);
+  const easyPace = paceLabel(week.easyRuns.pacePerKm);
+  const longPace = paceLabel(week.longRun.pacePerKm);
   const steadyPace = week.steadyRun
-    ? formatPace(week.steadyRun.pacePerKm)
+    ? paceLabel(week.steadyRun.pacePerKm)
     : null;
   const qualityText = t(`quality.${goal}.${week.qualityKey}`);
   const placementLabel = t(`qualityPlacement.${week.qualityPlacement}`);

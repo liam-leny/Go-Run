@@ -27,8 +27,11 @@ import {
 } from "@/components/ui/select";
 import { TRAINING_GOALS, type TrainingGoal } from "@/lib/training-plan";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import type { UseFormReturn } from "react-hook-form";
 import type { TrainingProgramFormValues } from "@/lib/training-program.schema";
+import { formatDistanceValueFromKm } from "@/lib/formatters";
+import type { Unit } from "@/app/[locale]/contexts/UnitContext";
 
 const WEEKLY_SESSION_OPTIONS = [4, 5, 6] as const;
 
@@ -38,8 +41,7 @@ type TrainingProgramFormSectionProps = {
   onReset: () => void;
   showReset: boolean;
   goalDistanceKm: number;
-  unitLabel: string;
-  formatDistance: (distanceKm: number) => string;
+  unitLabel: Unit;
 };
 
 export function TrainingProgramFormSection({
@@ -49,9 +51,9 @@ export function TrainingProgramFormSection({
   showReset,
   goalDistanceKm,
   unitLabel,
-  formatDistance,
 }: TrainingProgramFormSectionProps) {
   const t = useTranslations("TrainingProgram");
+  const locale = useLocale();
 
   const goalOptions = TRAINING_GOALS.map((goal) => ({
     value: goal,
@@ -64,7 +66,7 @@ export function TrainingProgramFormSection({
   }));
 
   const timeHelper = t("timeHelper", {
-    distance: formatDistance(goalDistanceKm),
+    distance: formatDistanceValueFromKm(goalDistanceKm, unitLabel, locale),
     unit: unitLabel,
   });
 
