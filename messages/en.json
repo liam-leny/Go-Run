@@ -24,8 +24,10 @@
     "pace": "Pace: "
   },
   "ActivityForm": {
-    "title": "Log an activity",
+    "title": "Or log an activity manually",
     "description": "Save each run with its date, distance and duration.",
+    "connect_strava": "Connect with",
+    "connected_strava": "Connected to",
     "date": "Activity date",
     "pick_a_date": "Pick a date",
     "distance": "Distance",

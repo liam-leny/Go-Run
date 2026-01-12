@@ -24,8 +24,10 @@
     "pace": "Allure : "
   },
   "ActivityForm": {
-    "title": "Enregistrer une activité",
+    "title": "Ou enregistrez manuellement une activité",
     "description": "Sauvegardez chaque sortie avec sa date, sa distance et sa durée.",
+    "connect_strava": "Se connecter avec",
+    "connected_strava": "Connecté à",
     "date": "Date de l'activité",
     "pick_a_date": "Choisissez une date",
     "distance": "Distance",
