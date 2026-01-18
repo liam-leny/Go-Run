@@ -1,6 +1,6 @@
 "use client";
 
-import { ActivityFormValues } from "@/lib/activity.schema";
+import { StoredActivity } from "@/lib/activity.schema";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useLocale, useTranslations } from "next-intl";
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
@@ -12,7 +12,7 @@ import {
 import { convertDistance } from "@/lib/distance";
 
 type DashboardSummaryProps = {
-  data: ActivityFormValues[];
+  data: StoredActivity[];
 };
 
 export function DashboardSummary({ data }: DashboardSummaryProps) {

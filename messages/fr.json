@@ -37,6 +37,12 @@
     "seconds": "Secondes",
     "save": "Sauvergarder"
   },
+  "StravaSync": {
+    "sync": "Synchroniser Strava",
+    "syncing": "Synchronisation...",
+    "lastSync": "Dernière synchro :",
+    "never": "Jamais"
+  },
   "DashboardSummary": {
     "totalDistance": "Distance totale ({unit})",
     "totalTime": "Temps total",
@@ -48,6 +54,9 @@
     "distance": "Distance",
     "time": "Temps",
     "pace": "Allure",
+    "source": "Source",
+    "source_manual": "Manuel",
+    "source_strava": "Strava",
     "delete": "Supprimer",
     "noData": "Aucune donnée",
     "previous": "Précédent",

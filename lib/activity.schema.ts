@@ -21,3 +21,8 @@ export function getActivitySchema(t: (key: string) => string) {
 export type ActivityFormValues = z.infer<
   Awaited<ReturnType<typeof getActivitySchema>>
 >;
+
+export type StoredActivity = ActivityFormValues & {
+  source?: "manual" | "strava";
+  stravaId?: number;
+};

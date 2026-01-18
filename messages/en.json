@@ -37,6 +37,12 @@
     "seconds": "Seconds",
     "save": "Save"
   },
+  "StravaSync": {
+    "sync": "Sync Strava",
+    "syncing": "Syncing...",
+    "lastSync": "Last sync:",
+    "never": "Never"
+  },
   "DashboardSummary": {
     "totalDistance": "Total distance ({unit})",
     "totalTime": "Total time",
@@ -48,6 +54,9 @@
     "distance": "Distance",
     "time": "Time",
     "pace": "Pace",
+    "source": "Source",
+    "source_manual": "Manual",
+    "source_strava": "Strava",
     "delete": "Delete",
     "noData": "No data",
     "previous": "Previous",

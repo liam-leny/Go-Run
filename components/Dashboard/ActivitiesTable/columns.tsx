@@ -1,9 +1,10 @@
 "use client";
 
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
-import { ActivityFormValues } from "@/lib/activity.schema";
+import { StoredActivity } from "@/lib/activity.schema";
 import { convertDistance } from "@/lib/distance";
 import { calculatePace } from "@/lib/pace";
+import { cn } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { enGB, fr } from "date-fns/locale";
@@ -32,7 +33,7 @@ const formatDate = (date: Date, localeCode: string) => {
 
 export function useColumns(
   handleDelete: (id: string) => void
-): DataTableColumn<ActivityFormValues>[] {
+): DataTableColumn<StoredActivity>[] {
   const t = useTranslations("ActivitiesTable");
   const { unit } = useUnit();
   const localeCode = useLocale();
@@ -103,6 +104,28 @@ export function useColumns(
           minutes,
           seconds,
         });
+      },
+    },
+    {
+      accessorKey: "source",
+      meta: { className: "w-28" },
+      header: t("source"),
+      cell: ({ row }) => {
+        const source = row.original.source === "strava" ? "strava" : "manual";
+        const label =
+          source === "strava" ? t("source_strava") : t("source_manual");
+        return (
+          <span
+            className={cn(
+              "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium",
+              source === "strava"
+                ? "border-[#FC5200]/30 bg-[#FC5200]/10 text-[#FC5200]"
+                : "border-muted-foreground/30 text-muted-foreground"
+            )}
+          >
+            {label}
+          </span>
+        );
       },
     },
     {

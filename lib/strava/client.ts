@@ -93,7 +93,11 @@ export class StravaClient {
     path: string,
     params?: Record<string, string | number | boolean>
   ): Promise<T> {
-    const url = new URL(path, STRAVA_API_BASE);
+    const base = STRAVA_API_BASE.endsWith("/")
+      ? STRAVA_API_BASE
+      : `${STRAVA_API_BASE}/`;
+    const normalizedPath = path.startsWith("/") ? path.slice(1) : path;
+    const url = new URL(normalizedPath, base);
 
     if (params) {
       for (const [key, value] of Object.entries(params)) {

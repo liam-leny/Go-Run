@@ -20,3 +20,14 @@ export type StoredStravaTokens = {
   expires_at: number;
   athlete?: StravaAthlete;
 };
+
+export type StravaActivity = {
+  id: number;
+  name: string;
+  type: string;
+  distance: number;
+  moving_time: number;
+  elapsed_time: number;
+  start_date: string;
+  start_date_local: string;
+};

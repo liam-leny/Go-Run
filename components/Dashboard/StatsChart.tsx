@@ -15,13 +15,13 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { ActivityFormValues } from "@/lib/activity.schema";
+import { StoredActivity } from "@/lib/activity.schema";
 import { useUnit } from "@/app/[locale]/contexts/UnitContext";
 import { useTranslations, useLocale } from "next-intl";
 import { convertDistance } from "@/lib/distance";
 
 interface StatsChartProps {
-  data: ActivityFormValues[];
+  data: StoredActivity[];
 }
 
 export default function StatsChart({ data }: StatsChartProps) {
