@@ -31,14 +31,14 @@ type SidebarProps = {
 
 type NavigationItem = {
   href: string;
-  labelKey: "paceCalculator" | "activityEntry" | "dashboard" | "trainingProgram";
+  labelKey: "logActivity" | "dashboard" | "paceCalculator" | "trainingProgram";
   icon: LucideIcon;
 };
 
 const NAVIGATION_ITEMS: NavigationItem[] = [
-  { href: "/", labelKey: "paceCalculator", icon: Gauge },
-  { href: "/log-activity", labelKey: "activityEntry", icon: ListPlus },
+  { href: "/log-activity", labelKey: "logActivity", icon: ListPlus },
   { href: "/dashboard", labelKey: "dashboard", icon: LayoutDashboard },
+  { href: "/pace-calculator", labelKey: "paceCalculator", icon: Gauge },
   { href: "/training-program", labelKey: "trainingProgram", icon: Dumbbell },
 ];
 
@@ -70,10 +70,11 @@ export default function Sidebar({ children }: SidebarProps) {
         ...item,
         label: t(`${item.labelKey}`),
       })),
-    [t]
+    [t],
   );
 
-  const toggleLabel = unit === "km" ? t("toggle_miles") : t("toggle_kilometers");
+  const toggleLabel =
+    unit === "km" ? t("toggle_miles") : t("toggle_kilometers");
 
   return (
     <SidebarProvider>
@@ -116,12 +117,6 @@ export default function Sidebar({ children }: SidebarProps) {
             <header className="flex h-16 items-center gap-2 border-b px-4 md:hidden">
               <SidebarTrigger className="md:hidden" />
               <h1 className="text-lg font-semibold md:hidden">Go Run</h1>
-              <div className="ml-auto flex items-center gap-2 md:hidden">
-                <Button variant="secondary" size={"sm"} onClick={toggleUnit}>
-                  {toggleLabel}
-                </Button>
-                <LocaleSwitcher />
-              </div>
             </header>
             <main className="flex-1 px-4 py-6 md:px-8">{children}</main>
           </div>

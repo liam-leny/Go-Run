@@ -1,13 +1,9 @@
-import Sidebar from "@/components/Sidebar";
-import PaceCalculator from "@/components/PaceCalculator";
-import { UnitProvider } from "@/app/[locale]/contexts/UnitContext";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <UnitProvider>
-      <Sidebar>
-        <PaceCalculator />
-      </Sidebar>
-    </UnitProvider>
-  );
+type HomeProps = {
+  params: { locale: string };
+};
+
+export default function Home({ params }: HomeProps) {
+  redirect(`/${params.locale}/log-activity`);
 }
