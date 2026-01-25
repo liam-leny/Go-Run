@@ -68,6 +68,11 @@
     "distance": "Distance",
     "time": "Temps"
   },
+  "PaceTrend": {
+    "title": "Tendance d'allure",
+    "description": "Allure moyenne par date d'activité",
+    "paceLabel": "Allure (min/{unit})"
+  },
   "TrainingProgram": {
     "title": "Programme d'entraînement",
     "description": "Définissez votre objectif de distance et de temps pour générer un plan hebdomadaire personnalisé.",

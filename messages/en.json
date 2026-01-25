@@ -68,6 +68,11 @@
     "distance": "Distance",
     "time": "Time"
   },
+  "PaceTrend": {
+    "title": "Pace trend",
+    "description": "Average pace by activity date",
+    "paceLabel": "Pace (min/{unit})"
+  },
   "TrainingProgram": {
     "title": "Training Program",
     "description": "Set your goal distance and target finish time to generate a personalized weekly plan.",

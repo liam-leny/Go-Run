@@ -3,6 +3,7 @@
 import { ActivitiesTable } from "./ActivitiesTable/data-table";
 import { useColumns } from "./ActivitiesTable/columns";
 import StatsChart from "./StatsChart";
+import PaceTrendChart from "./PaceTrendChart";
 import { useActivitiesData } from "@/hooks/use-activities-data";
 import { DashboardSummary } from "./DashboardSummary";
 import { Button } from "@/components/ui/button";
@@ -48,6 +49,7 @@ export function Dashboard() {
       )}
       <ActivitiesTable columns={columns} data={data} />
       <StatsChart data={data} />
+      <PaceTrendChart data={data} />
     </div>
   );
 }
