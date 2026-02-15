@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation";
 
 type HomeProps = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export default function Home({ params }: HomeProps) {
-  redirect(`/${params.locale}/log-activity`);
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
+  redirect(`/${locale}/log-activity`);
 }
