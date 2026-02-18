@@ -73,6 +73,14 @@
     "description": "Average pace by activity date",
     "paceLabel": "Pace (min/{unit})"
   },
+  "DistanceVolume": {
+    "title": "Distance volume",
+    "description": "Distance evolution over the last 12 months, aggregated by week or month",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "distanceLabel": "Distance ({unit})",
+    "weekOf": "Week of {date}"
+  },
   "TrainingProgram": {
     "title": "Training Program",
     "description": "Set your goal distance and target finish time to generate a personalized weekly plan.",

@@ -73,6 +73,14 @@
     "description": "Allure moyenne par date d'activité",
     "paceLabel": "Allure (min/{unit})"
   },
+  "DistanceVolume": {
+    "title": "Volume de distance",
+    "description": "Evolution de la distance sur les 12 derniers mois, agrégée par semaine ou par mois",
+    "weekly": "Semaine",
+    "monthly": "Mois",
+    "distanceLabel": "Distance ({unit})",
+    "weekOf": "Semaine du {date}"
+  },
   "TrainingProgram": {
     "title": "Programme d'entraînement",
     "description": "Définissez votre objectif de distance et de temps pour générer un plan hebdomadaire personnalisé.",
